@@ -2,6 +2,11 @@
 
 A lightweight plugin that bridges the mobile Google Sign-In SDKs to Unity for Android and iOS. This package gives you a simple C# interface to Android's Credential Manager and the iOS GoogleSignIn SDK.
 
+The usage of this plug-in is stricly for returning a googleId Token for authentication. It does not currently support requesting scopes.
+
+Eligibility for the [Google Open Source Software Vulnerability Rewards
+Program](https://bughunters.google.com/open-source-security) is determined by the [Google Open Source Software Vulnerability Reward Program Rules](https://bughunters.google.com/about/rules/open-source/google-open-source-software-vulnerability-reward-program-rules).
+
 ## Features
 - **Modern & Secure:** Uses the latest mobile SDKs, not outdated WebViews.
 - **Backend Agnostic:** Get a Google ID Token to authenticate with any service you want (Firebase, Okta, your own backend, etc.).
@@ -144,3 +149,23 @@ public class MyAuthController : MonoBehaviour
 * Unity will generate an Xcode project. Open the `.xcworkspace` file.  
 * In the **Signing & Capabilities** tab, select your Development Team.  
 * The plugin automatically adds the URL Scheme for you. Run on a physical device.
+
+
+### FAQ
+
+* In GoogleSignInNativeAndroid.androidilb > [gradleTemplate.properties](Plugins/Android/gradleTemplate.properties) you may need to append `android.builtInKotlin=true` if your project has `android.builtInKotlin=false`. You can check this by running `grep -i kotlin gradle.properties` under YOUR_UNITY_PROJECT/Library/Bee/Android/Prj/IL2CPP/Gradle. Kotlin was not enabled by default on versions of Unity older that 6.5. This is due to Unity 6.5 updating to Android Gradle Plugin (AGP) 9.x.x. 
+
+* In GoogleSignInNativeAndroid.androidlib > [build.gradle](Plugins/Android/GoogleSignInNativeAndroid.androidlib/build.gradle) the following block of code is used to ensure that we do not have Kotlin version conflicts when building the .androidlib:
+
+```gradle
+kotlin {
+    compilerOptions {
+        freeCompilerArgs.add("-Xskip-metadata-version-check")
+    }
+}
+```
+ This is because the [com.google.android.libraries.identity.googleid Library](https://maven.google.com/web/index.html#com.google.android.libraries.identity.googleid:googleid:1.2.1) used was built with Kotlin 2.4.x while the default for Unity is 2.1.0. This block can be removed once Unity updates to a default Kotlin version of 2.4.x or greater.
+
+## Support & Security Disclaimers
+This project is not intended for active development. Issues and contributions are handled on a best effort basis. This open source solution is intended to enhance the Google customer experience. For product support, please see [support.google.com](https://support.google.com).
+Eligibility for the [Google Open Source Software Vulnerability Rewards Program](https://bughunters.google.com/open-source-security) is determined by the [Google Open Source Software Vulnerability Reward Program Rules](https://bughunters.google.com/about/rules/open-source/google-open-source-software-vulnerability-reward-program-rules).
