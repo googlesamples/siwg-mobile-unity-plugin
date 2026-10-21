@@ -73,7 +73,6 @@ public class GoogleSignInManager : MonoBehaviour
     void InitializeNativeSignIn()
     {
 #if UNITY_ANDROID && !UNITY_EDITOR
-        Debug.Log("[GoogleSignInManager] Initializing Android Google Sign-In with Web Client ID: " + signInSettings.webClientId);
         AndroidGoogleSignIn.Initialize(signInSettings.webClientId);
 
 #elif UNITY_IOS && !UNITY_EDITOR
@@ -92,7 +91,6 @@ public class GoogleSignInManager : MonoBehaviour
 #elif UNITY_IOS
         if (string.IsNullOrEmpty(signInSettings.iosClientId) || signInSettings.iosClientId.Contains("YOUR_"))
         {
-            Debug.LogError("[GoogleSignInManager] iOS Client ID not set in settings!");
             HandleSignInError("iOS Client ID not set in settings.");
             return;
         }
@@ -106,7 +104,6 @@ public class GoogleSignInManager : MonoBehaviour
     public void HandleSignInSuccess(string idToken)
     {
         UpdateStatus($"Native sign-in success. ID Token received.", false);
-        Debug.Log("[GoogleSignInManager] ID Token: " + idToken);
         OnSignInSuccess?.Invoke(idToken);
     }
 

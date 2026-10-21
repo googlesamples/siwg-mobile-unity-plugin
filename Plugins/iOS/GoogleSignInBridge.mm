@@ -69,9 +69,6 @@ void _IOSGoogleSignIn_SignIn() {
                                 completion:^(GIDSignInResult* _Nullable result,
                                              NSError* _Nullable error) {
       if (error) {
-        if (error.code == kGIDSignInErrorCodeCanceled) {
-          UnitySendMessage(kUnityGameObjectName, "HandleSignInCancelled", "");
-        } else {
           UnitySendMessage(kUnityGameObjectName, "HandleSignInError",
                            error.localizedDescription.UTF8String);
         }
