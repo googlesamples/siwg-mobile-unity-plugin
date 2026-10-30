@@ -52,14 +52,14 @@ Before integrating this plugin, you must configure your application identity def
 
 ## 2\. Integration Guide
 
-Choose the path that matches your current development state.
+Choose the path that matches your current development state. Packages for Unity can be found in [Releases](/Releases/). These instructions assume that you have downloaded [`siwg_unity_mobile_plugin.unitypackage`](/Releases/siwg_unity_mobile_plugin.unitypackage) locally.
 
 ### Path A: Starting a New Project
 
 1. **Create Project:** Open Unity Hub and create a new project using the **URP (Universal Render Pipeline)** template. **Must use Unity 6 LTS.**  
 2. **Switch Platforms:** Go to **File \> Build Profiles**. Select **Android** and click **Switch Platform**. Do the same for **iOS**.  
 3. **Import Dependencies:** Ensure the [**External Dependency Manager for Unity (EDM4U)**](https://github.com/googlesamples/unity-jar-resolver#external-dependency-manager-for-unity:~:text=License-,External%20Dependency%20Manager%20for%20Unity,-Overview) is installed in your project to manage native libraries.  
-4. **Import This Plugin:** Double-click the `GoogleSignInNative.unitypackage`. Ensure all files are checked and click **Import**.  
+4. **Import This Plugin:** Go to **Assets \> Import Package \> Custom Package** and select [`siwg_unity_mobile_plugin.unitypackage`](/Releases/siwg_unity_mobile_plugin.unitypackage) from the location that you downloaded it. Ensure all files are checked and click **Import**.  
 5. **Proceed to Section 3 (Final Configuration).**
 
 ---
@@ -68,7 +68,7 @@ Choose the path that matches your current development state.
 
 1. **Backup:** Always back up your project before importing new native plugins.  
 2. **Prerequisite Check:** Ensure you have [**EDM4U**](https://github.com/googlesamples/unity-jar-resolver#external-dependency-manager-for-unity:~:text=License-,External%20Dependency%20Manager%20for%20Unity,-Overview) installed. If you have an older Google Sign-In plugin, remove it entirely.  
-3. **Import This Plugin:** Go to **Assets \> Import Package \> Custom Package** and select the `GoogleSignInNative.unitypackage`.  
+3. **Import This Plugin:** Go to **Assets \> Import Package \> Custom Package** and select the [`siwg_unity_mobile_plugin.unitypackage`](/Releases/siwg_unity_mobile_plugin.unitypackage) from the location that you downloaded it. Ensure all files are checked and click **Import**.
 4. **Template Warning:** This plugin includes `baseProjectTemplate.gradle` and `settingsTemplate.gradle`.  
    * If you **do not** already have these templates, they will be added automatically.  
    * If you **already have** custom templates, Unity will not overwrite them. You **must manually merge** the Kotlin 1.9.24 definitions into your existing templates (see Section 3).  
